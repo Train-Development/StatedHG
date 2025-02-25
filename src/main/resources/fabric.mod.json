@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "statedhg",
+	"version": "${version}",
+	"name": "StatedHG",
+	"description": "This mod Implements Utils for HGLabor FFA Mode",
+	"authors": [
+		"Blonicx"
+	],
+	"contact": {
+
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/statedhg/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.blonicx.statedhg.StatedHG"
+		],
+		"client": [
+			"com.blonicx.statedhg.StatedHGClient"
+		]
+	},
+	"mixins": [
+		"statedhg.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.10",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
