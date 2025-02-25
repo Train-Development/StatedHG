@@ -1,5 +1,7 @@
 {
-  "category.statedhg": "StatedHG",
-  "key.statedhg.open_gui": "Open/Close GUI"
+  "statedhg.category": "StatedHG",
+  "statedhg.key.open_gui": "Open/Close GUI",
+
+  "statedhg.button.searchButton": "Search"
 }
 

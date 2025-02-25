@@ -20,10 +20,10 @@ public class StatedHGClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key.statedhg.open_gui",
+                "statedhg.key.open_gui",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_G,
-                "category.statedhg"
+                "statedhg.category"
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
