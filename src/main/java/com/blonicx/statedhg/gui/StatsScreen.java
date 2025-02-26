@@ -49,8 +49,6 @@ public class StatsScreen extends Screen {
 
 
     // Leaderboard Values //
-    private String first_place_username;
-
     private final int boxWidth = 200;
     private final int boxHeight = 120;
 
@@ -80,17 +78,17 @@ public class StatsScreen extends Screen {
 
             if (first_place != null) {
                 try {
-                    first_place_username = PlayerData.getUsernameFromUUID(first_place.get("playerId").toString());
+                    username = PlayerData.getUsernameFromUUID(first_place.get("playerId").toString());
                     kills = first_place.optString("kills", "0");
                     deaths = first_place.optString("deaths", "0");
                     bounty = first_place.optString("bounty", "0");
                     xp = first_place.optString("xp", "0");
-                    updateHeadTexture(first_place_username);
+                    updateHeadTexture(username);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             } else {
-                first_place_username = "Unknown";
+                username = "Unknown";
             }
 
             StatedHG.LOGGER.info("JSONData: " + leaderboard);
