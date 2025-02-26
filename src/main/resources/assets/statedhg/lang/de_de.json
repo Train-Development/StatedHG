@@ -2,5 +2,15 @@
   "statedhg.category": "StatedHG",
   "statedhg.key.open_gui": "Öffnen/Schließen GUI",
 
-  "statedhg.button.searchButton": "Suchen"
+  "statedhg.button.searchButton": "Suchen",
+
+  "statedhg.button.searchPlayerTabButton": "Spieler Suchen",
+  "statedhg.button.myStatsTabButton": "Meine Stats",
+  "statedhg.button.leaderboardTabButton": "Leaderboard",
+
+  "statedhg.button.killsTabButton": "Kills",
+  "statedhg.button.deathsTabButton": "Tode",
+  "statedhg.button.xpTabButton": "XP",
+
+  "statedhg.input_field.searchInputPlaceholder": "Spieler suchen..."
 }

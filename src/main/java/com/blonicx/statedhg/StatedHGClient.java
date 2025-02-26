@@ -14,7 +14,6 @@ import org.lwjgl.glfw.GLFW;
 public class StatedHGClient implements ClientModInitializer {
 
     private static KeyBinding keyBinding;
-    private boolean statsScreenOpen = false;
     Screen currentScreen = MinecraftClient.getInstance().currentScreen;
 
     @Override
@@ -28,13 +27,7 @@ public class StatedHGClient implements ClientModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (keyBinding.wasPressed()) {
-                if(statsScreenOpen){
-                    MinecraftClient.getInstance().setScreen(null);
-                    statsScreenOpen = false;
-                }else{
-                    MinecraftClient.getInstance().setScreen(new StatsScreen());
-                    statsScreenOpen = true;
-                }
+                MinecraftClient.getInstance().setScreen(new StatsScreen());
             }
         });
     }
