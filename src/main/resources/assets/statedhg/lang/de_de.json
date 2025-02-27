@@ -6,7 +6,7 @@
 
   "statedhg.button.searchPlayerTabButton": "Spieler Suchen",
   "statedhg.button.myStatsTabButton": "Meine Stats",
-  "statedhg.button.leaderboardTabButton": "Leaderboard",
+  "statedhg.button.topPlayersTabButton": "Top Spieler",
 
   "statedhg.button.killsTabButton": "Kills",
   "statedhg.button.deathsTabButton": "Tode",
