@@ -37,6 +37,7 @@ public class DataReceiver {
     public static String xp;
 
     public static String username;
+    public static String cachedUsername = "";
 
     public static void loadMyStats(){
         try{

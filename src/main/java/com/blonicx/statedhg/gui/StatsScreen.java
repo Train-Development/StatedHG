@@ -85,7 +85,16 @@ public class StatsScreen extends Screen {
         int valueX = boxX + boxWidth - 50;
 
         TextFieldWidget playerInput = new TextFieldWidget(this.textRenderer, boxX + 10, boxY - 30, 100, 20, Text.of("Player"));
-        playerInput.setPlaceholder(Text.translatable("statedhg.input_field.searchInputPlaceholder"));
+
+        playerInput.setChangedListener((input) -> {
+            DataReceiver.cachedUsername = input;
+        });
+
+        if(DataReceiver.cachedUsername.isEmpty()){
+            playerInput.setPlaceholder(Text.translatable("statedhg.input_field.searchInputPlaceholder"));
+        } else {
+            playerInput.setText(DataReceiver.cachedUsername);
+        }
 
         ButtonWidget searchButton = ButtonWidget.builder(Text.translatable("statedhg.button.searchButton"), (btn) -> {
             try {
