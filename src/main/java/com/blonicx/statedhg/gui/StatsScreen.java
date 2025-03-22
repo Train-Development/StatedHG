@@ -4,6 +4,7 @@ import com.blonicx.basecore.api.hglabor.HGLaborStats;
 import com.blonicx.basecore.api.hglabor.enums.HGLaborGameModes;
 import com.blonicx.basecore.api.hglabor.enums.ffa.FFAValues;
 
+import com.blonicx.basecore.api.utils.io.Color;
 import com.blonicx.statedhg.utils.DataReceiver;
 
 import net.minecraft.client.gui.DrawContext;
@@ -11,16 +12,19 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
 import java.io.IOException;
 
 public class StatsScreen extends Screen {
-    public Screen parent;
-
     private final String ModOwner = "belte11";
     private final String Goat = "noriskk";
 
-    // Leaderboard Values //
+    private final Identifier trophy_texture = Identifier.of("statedhg", "textures/gui/sprites/trophy.png");
+
+    private boolean leaderboardTab = false;
+
+    // Box Values //
     private final int boxWidth = 200;
     private final int boxHeight = 120;
 
@@ -72,6 +76,8 @@ public class StatsScreen extends Screen {
         int labelX = boxX + 10;
         int valueX = boxX + boxWidth - 50;
 
+        leaderboardTab = false;
+
         DataReceiver.loadMyStats();
 
         drawStatsBox(boxX, boxY, boxWidth, boxHeight, labelX, valueX);
@@ -83,6 +89,8 @@ public class StatsScreen extends Screen {
 
         int labelX = boxX + 10;
         int valueX = boxX + boxWidth - 50;
+
+        leaderboardTab = false;
 
         TextFieldWidget playerInput = new TextFieldWidget(this.textRenderer, boxX + 10, boxY - 30, 100, 20, Text.of("Player"));
 
@@ -128,19 +136,21 @@ public class StatsScreen extends Screen {
         int labelX = boxX + 10;
         int valueX = boxX + boxWidth - 50;
 
+        leaderboardTab = true;
+
         ButtonWidget deathsTabButton = ButtonWidget.builder(Text.translatable("statedhg.button.deathsTabButton"), (btn) -> {
             this.clearChildren();
-            DataReceiver.updateLeaderboard(FFAValues.DEATHS);
             defaultButtons();
             leaderboardTab();
+            DataReceiver.updateLeaderboard(FFAValues.DEATHS);
             drawStatsBox(boxX, boxY, boxWidth, boxHeight, labelX, valueX);
         }).dimensions(boxX + 150, boxY - 30, 60, 20).build();
 
         ButtonWidget killsTabButton = ButtonWidget.builder(Text.translatable("statedhg.button.killsTabButton"), (btn) -> {
             this.clearChildren();
-            DataReceiver.updateLeaderboard(FFAValues.KILLS);
             defaultButtons();
             leaderboardTab();
+            DataReceiver.updateLeaderboard(FFAValues.KILLS);
             drawStatsBox(boxX, boxY, boxWidth, boxHeight, labelX, valueX);
         }).dimensions(boxX + 70, boxY - 30, 60, 20).build();
 
@@ -159,14 +169,20 @@ public class StatsScreen extends Screen {
 
     // Box //
     private void drawStatsBox(int x, int y, int width, int height, int labelX, int valueX) {
-        // Draw the rounded rectangle
+        // Draw the Box
         this.addDrawable((context, mouseX, mouseY, delta) -> {
             context.fill(x, y, x + width, y + height, 0xAA000000); // Semi-transparent black
 
             // Draw the player head
-            if (DataReceiver.playerHeadTexture != null) {
+            if (DataReceiver.playerHeadTexture != null && client != null) {
                 client.getTextureManager().bindTexture(DataReceiver.playerHeadTexture);
                 context.drawTexture(DataReceiver.playerHeadTexture, valueX, y + 10, 32, 32, 0, 0, 32, 32, 32, 32);
+            }
+
+            if (leaderboardTab && client != null){
+                client.getTextureManager().bindTexture(trophy_texture);
+                context.drawTexture(trophy_texture, (int) (labelX + 52.5), (int) (y + 22.5), 16, 16, 0, 0, 16, 16, 16, 16);
+                context.drawText(textRenderer, com.blonicx.basecore.api.utils.io.Text.coloredText("Top Player", Color.fromARGB(255, 255, 215, 0), false, false), labelX, y + 25, 0xFFFFFF, false);
             }
 
             // Special Player Titles

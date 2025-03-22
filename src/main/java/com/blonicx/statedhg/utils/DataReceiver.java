@@ -41,7 +41,9 @@ public class DataReceiver {
 
     public static void loadMyStats(){
         try{
-            username = MinecraftClient.getInstance().player.getName().getString();
+            if (MinecraftClient.getInstance().player != null){
+                username = MinecraftClient.getInstance().player.getName().getString();
+            }
             playerStats = HGLaborStats.PlayerStats(username , HGLaborGameModes.FFA);
             updateHeadTexture();
             updateStats();
